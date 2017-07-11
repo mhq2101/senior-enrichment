@@ -36,3 +36,15 @@ router.param('studentId', function (req, res, next, id) {
 router.get('/:studentId', function (req, res) {
   res.json(req.student);
 });
+
+router.put('/:studentId', function (req, res, next) {
+  req.student.update(req.body)
+  .then(student => res.status(200).json(student))
+  .catch(next);
+});
+
+router.delete('/:studentId', function (req, res, next) {
+  req.student.destroy()
+  .then(() => res.status(204).end())
+  .catch(next);
+});
