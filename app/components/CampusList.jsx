@@ -7,24 +7,28 @@ import { withRouter } from 'react-router';
 class CampusList extends Component {
 
     render() {
-        const { campuses } = this.props;
+        const { campuses, students } = this.props;
+
 
         return (
+            <div>
+            <h2>Campus List</h2>
             <ul>
                 {
                     campuses.map(campus => {
                         return (<li key={campus.id}>
-                            <NavLink to={`/campus/api/${channel.id}`} activeClassName="active">
+                            <NavLink to={`/campus/api/${campus.id}`} activeClassName="active">
                                 <span>{campus.name}</span>
-                                <span className="badge">{students.filter(student => student.campusId === campus.id).length}</span>
+                                <span className="badge">{' (' + students.filter(student => student.campusId === campus.id).length + ')'}</span>
                             </NavLink>
                         </li>)
                     })
                 }
-                {/*<li>
-                    <NavLink to="/new-channel">Create a channel...</NavLink>
-                </li>*/}
             </ul>
+            <div>
+                    <NavLink to="/new-campus">You could like Create a campus if you want homie...</NavLink>
+                </div>
+            </div>
         )
 
 
@@ -37,7 +41,8 @@ class CampusList extends Component {
 
 const mapStateToProps = function (state) {
     return {
-        campuses: state.campuses
+        campuses: state.campuses,
+        students: state.students
     };
 }
 

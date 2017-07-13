@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
-// import StudentList from './StudentList';
+import StudentList from './StudentList';
 import CampusList from './CampusList';
-// import NewChannelEntry from './NewChannelEntry';
+import NewCampus from './NewCampus';
 import store, { fetchStudents, fetchCampuses } from '../store';
 
 export default class Main extends Component {
@@ -19,20 +19,18 @@ export default class Main extends Component {
 
     render() {
         return (
-            <HashRouter>
+            <div>
+                {/*<Sidebar />*/}
+                <Navbar />
                 <div>
-
-                    <Sidebar />
-                    <Navbar />
-                    <main>
-                        {/*<Switch>*/}
-                        {/*<Route path="/students" component={StudentsList} />*/}
+                    <Switch>
+                        <Route path="/students" component={StudentList} />
                         <Route path="/campuses" component={CampusList} />
-                        {/*</Switch>*/}
-                    </main>
+                        <Route path="/new-campus" component={NewCampus} />
 
+                    </Switch>
                 </div>
-            </HashRouter>
+            </div>
         )
     }
 }

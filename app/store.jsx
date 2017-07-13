@@ -9,7 +9,7 @@ import thunkMiddleware from 'redux-thunk'; // https://github.com/gaearon/redux-t
 const initialState = {
     campuses: [],
     students: [],
-    newStudentEntry: '',
+    newStudentEntry: {},
     newCampusEntry: ''
 
 };
@@ -18,7 +18,7 @@ const initialState = {
 
 const GET_CAMPUS = 'GET_CAMPUS';
 const GET_CAMPUSES = 'GET_CAMPUSES';
-const CREAT_CAMPUS = 'WRITE_CAMPUS';
+const CREATE_CAMPUS = 'WRITE_CAMPUS';
 const CREATE_STUDENT = 'CREATE_STUDENT';
 const GET_STUDENT = 'GET_STUDENT';
 const GET_STUDENTS = 'GET_STUDENTS';
@@ -42,6 +42,16 @@ export function getCampuses(campuses) {
     const action = { type: GET_CAMPUSES, campuses };
     return action;
 
+}
+
+export function createCampus(newCampusEntry) {
+    const action = { type: CREATE_CAMPUS, newCampusEntry };
+    return action;
+}
+
+export function createStudent(newStudentEntry) {
+    const action = { type: CREATE_CAMPUS, newStudentEntry };
+    return action;
 }
 
 
@@ -82,7 +92,7 @@ export function fetchCampuses() {
     }
 }
 
-export function postCampus(campus, hist) {
+export function postCampus(campus) {
 
     return function thunk(dispatch) {
         return axios.post('/api/campuses', campus)
@@ -90,7 +100,7 @@ export function postCampus(campus, hist) {
             .then(newCampus => {
                 const action = getCampus(newCampus);
                 dispatch(action);
-                hist.push(`/campuses/${newCampus.id}`)
+                // hist.push(`/campuses/${newCampus.id}`)
             });
     }
 
@@ -109,6 +119,10 @@ function reducer(state = initialState, action) {
             return Object.assign({}, state, { campuses: action.campuses });
          case GET_CAMPUS:
             return Object.assign({}, state, { campuses: state.campuses.concat([action.campus]) });
+        case CREATE_CAMPUS:
+            return Object.assign({}, state, { newCampusEntry: action.newCampusEntry });
+        case CREATE_STUDENT:
+            return Object.assign({}, state, { newStudentEntry: action.newStudentEntry });
 
         default:
             return state;

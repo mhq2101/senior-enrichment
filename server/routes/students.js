@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  Student.create(req.body)
+  Student.findOrCreate({where: req.body})
   .then(student => res.status(201).json(student))
   .catch(next);
 });
