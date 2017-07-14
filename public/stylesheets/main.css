@@ -1,8 +1,10 @@
 html {
-  background-color: #f8f8f8; }
+  background-color: violet; }
 
 body {
-  background: repeating-linear-gradient(45deg, #e3e3e3 0px, #e3e3e3 10px, #ccc 1px, #ccc 11px); }
+  background: repeating-linear-gradient(45deg, #e3e3e3 0px, white 10px, #ccc 1px, #ccc 11px);
+  background-color: violet;
+}
 
 a, span, h1, h2, h3, h4, h5, h6, div {
   font-family: 'Verdana'; }
@@ -21,7 +23,8 @@ select {
   opacity: 0.5; }
 
 .large-font {
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  text-align: center; }
 
 .small-font {
   font-size: 0.5em; }
@@ -78,7 +81,7 @@ select {
 .navbar {
   border: none;
   border-radius: 0;
-  border-bottom: 1px dotted #777; }
+  border-bottom: 4px dotted violet; }
   .navbar .navbar-nav a.active {
     background: transparent;
     position: relative; }

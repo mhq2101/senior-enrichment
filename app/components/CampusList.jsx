@@ -17,10 +17,11 @@ class CampusList extends Component {
                 {
                     campuses.map(campus => {
                         return (<li key={campus.id}>
-                            <NavLink to={`/campus/api/${campus.id}`} activeClassName="active">
+                            <NavLink to={`/campuses/${campus.id}`} activeClassName="active">
                                 <span>{campus.name}</span>
                                 <span className="badge">{' (' + students.filter(student => student.campusId === campus.id).length + ')'}</span>
                             </NavLink>
+                            <img src={campus.imgUrl} alt="pootbro" height="60" width="60"/>
                         </li>)
                     })
                 }
